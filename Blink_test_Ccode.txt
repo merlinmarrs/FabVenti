@@ -1,0 +1,31 @@
+// Fablab Digiscope //
+// Venti Rev.1 Blink Test Code //
+// 04/2020 //
+
+// Target: Atmega 328P //
+
+#define F_CPU 8000000 // I also disable the CLKDIV8 fuse //
+
+#include <avr/io.h>
+
+#include <util/delay.h> // because I'm using _delay_ms() //
+ 
+int main(void)
+{
+ DDRC = 0b11111111; // All port C pins set to output
+ DDRB = 0b11111111; // All port B pins set to output
+
+    while (1) // while value inside the brackets is non-zero,
+    {
+        PORTC = 0b11111111; // All port C pins HIGH
+	PORTB = 0b00000000; // All port B pins LOW
+        _delay_ms(1000); //1000ms = 1 second
+
+         
+        PORTC = 0b00000000; // All port C pins LOW
+	PORTB = 0b11111111; // All port B pins HIGH
+        _delay_ms(1000);    
+    
+    }
+    return (0);
+}
